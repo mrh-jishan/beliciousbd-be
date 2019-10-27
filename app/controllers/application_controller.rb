@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::API
+    include Response
+    include ExceptionHandler
+    
     def index
         @users = User.all
         render :json => {:success=> true, :user=> @users}

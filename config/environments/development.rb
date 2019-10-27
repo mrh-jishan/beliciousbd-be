@@ -47,13 +47,13 @@ Rails.application.configure do
 
 
   config.action_mailer.smtp_settings = {
-  :address => "email-smtp.us-east-1.amazonaws.com",
-  :port => 587,
-  :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
-  :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
-  :authentication => :login,
-  :enable_starttls_auto => true
-}
+    :address => "email-smtp.us-east-1.amazonaws.com",
+    :port => 587,
+    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
+    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true

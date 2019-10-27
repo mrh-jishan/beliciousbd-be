@@ -6,12 +6,18 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.string :gender, limit: 10, null: false
 
-      t.text :email, null: false
+      t.string :email, null: false
+
+      t.string :confirm_token, null: false
+      t.boolean :email_confirmed, :default=>false, null: false
+    
       t.string :password_digest, null: false
 
+  
       t.timestamps
     end
 
     add_index :users, :email, unique: true
+    add_index :users, :confirm_token, unique: true
   end
 end

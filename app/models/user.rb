@@ -11,6 +11,12 @@ class User < ApplicationRecord
   validates :password,length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
 
 
+  def email_activate
+    raise StandardError.new("Sorry !!! Email already verified")  if self.email_confirmed
+    self.email_confirmed = true
+    self.save
+  end
+
   private 
 
   def confirmation_token

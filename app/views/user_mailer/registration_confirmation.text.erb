@@ -1,5 +1,8 @@
-Hi <%= @user.first_name %> <%= @user.last_name %>,
+Hi <%= @user.first_name %>,
 
-Thanks for registering! To confirm your registration click the URL below.
+Thanks for registering! To confirm your registration open the URL below.
 
-<%= api_v1_confirm_email_url(@user.confirm_token) %>
+<%="#{ENV['REGISTRATION_CONFIRMATION_LINK']}#{@user.confirm_token}"%>
+
+Thanks you
+Md Robiul Hassan

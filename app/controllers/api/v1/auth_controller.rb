@@ -10,6 +10,16 @@ class Api::V1::AuthController < ApplicationController
     end
 
 
+    def update
+      user = User.find_by_confirm_token(params[:id])
+      if user 
+        user.email_activate
+        render :json => {:success=> true, :user=> user.as_json(except: [:password_digest, :confirm_token])}, status: :ok        
+      else
+        render :json => {:success=> false, :message=> "invalid code"}, status: :bad_request
+      end
+    end
+
     protected
 
     def auth_param
