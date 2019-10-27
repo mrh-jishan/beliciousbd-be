@@ -1,0 +1,11 @@
+Hi <%= @user.first_name %> <%= @user.last_name %>,
+<br>
+Thanks for registering! To confirm your registration click the URL below.
+<br>
+<%=link_to "Click Here",  api_v1_confirm_email_url(:code=>@user.confirm_token) %>
+<br>
+Or copy the below link to your browser
+<br>
+<%=api_v1_confirm_email_url%>?code=<%=@user.confirm_token%>
+<br>
+Thanks you

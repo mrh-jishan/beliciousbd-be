@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_161220) do
+ActiveRecord::Schema.define(version: 2019_10_24_170020) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_161220) do
     t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

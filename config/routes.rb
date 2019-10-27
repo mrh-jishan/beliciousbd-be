@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do  
       resources :user
       resources :auth
+      get :confirm_email
     end  
   end  
 end
