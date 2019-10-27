@@ -3,9 +3,9 @@ class Api::V1::UserController < ApplicationController
         @user = User.new(user_param)
         if @user.save
             UserMailer.registration_confirmation(@user).deliver
-            render :json => {:success=> true, :user=> @user.as_json(except: [:password_digest, :confirm_token])}, status: :ok
+            json_response({:user=>@user.as_json(except: [:password_digest, :confirm_token])}, 200)
         else
-            render :json => {:success=> false, :message=> @user.errors.full_messages}, status: :bad_request
+            json_response({}, 401, @user.errors.full_messages)
         end
     end
 
