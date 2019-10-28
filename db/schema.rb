@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_161220) do
     t.string "confirm_token", null: false
     t.boolean "email_confirmed", default: false, null: false
     t.string "password_digest", null: false
+    t.string "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirm_token"], name: "index_users_on_confirm_token", unique: true
