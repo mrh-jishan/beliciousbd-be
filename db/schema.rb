@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_161220) do
+ActiveRecord::Schema.define(version: 2019_10_28_150422) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.text "address", null: false
     t.string "city", limit: 64, null: false
     t.string "state", limit: 64, null: false
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 2019_10_20_161220) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", unique: true
+  end
+
+  create_table "kitchens", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_kitchens_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "kitchen_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kitchen_id"], name: "index_tags_on_kitchen_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +57,6 @@ ActiveRecord::Schema.define(version: 2019_10_20_161220) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "kitchens", "users"
+  add_foreign_key "tags", "kitchens"
 end

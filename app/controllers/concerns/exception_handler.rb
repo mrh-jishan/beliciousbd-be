@@ -11,7 +11,7 @@ module ExceptionHandler
       end
 
       rescue_from StandardError do |e|
-        json_response({success: false,message: e.message}, 422)
+        json_response({success: false,message: e.message}, 500)
       end
     end
 end

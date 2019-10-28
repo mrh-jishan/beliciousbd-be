@@ -1,5 +1,5 @@
 class Api::V1::UserController < ApplicationController
-    before_action :authorize_request
+    before_action :authorize_request, :only => [:index]
 
     def create
         user = User.new(user_param)

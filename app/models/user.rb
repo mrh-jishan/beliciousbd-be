@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :address
+  has_many :kitchens
   has_secure_password
   # user role
   enum role: {:admin=>"admin", :customer=>"customer", :chef=>"chef"}
