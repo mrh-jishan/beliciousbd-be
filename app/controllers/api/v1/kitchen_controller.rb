@@ -12,7 +12,9 @@ class Api::V1::KitchenController < ApplicationController
     end
 
     def index
-        json_response({user: @current_user}, 200)
+        user = @current_user
+        kitchens = Kitchen.includes(:user)
+        json_response({:kitchens=> kitchens}, 200)
     end
 
 
