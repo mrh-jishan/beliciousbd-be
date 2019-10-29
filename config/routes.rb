@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do  
       resources :user, only: [:create, :index]
       resources :auth, only: [:create, :update]
-      resources :kitchen, only: [:create, :index]
+      resources :kitchen, only: [:create, :index] do
+        resources :food, only: [:index, :new, :create]
+      end
     end  
   end  
 end
