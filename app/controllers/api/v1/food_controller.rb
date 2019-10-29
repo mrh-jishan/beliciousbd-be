@@ -28,7 +28,7 @@ class Api::V1::FoodController < ApplicationController
     end
     
     def food_param
-        params.required(:food).permit(:name, :category, :description, :reciepe, ingredients_attributes: [ :name ])
+        params.required(:food).permit(:name, :category, :price, :description, :reciepe, ingredients_attributes: [ :name ])
     end
 
 end

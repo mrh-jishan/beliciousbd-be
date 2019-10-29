@@ -5,6 +5,6 @@ class Food < ApplicationRecord
     has_many :ingredients
     accepts_nested_attributes_for :ingredients, :allow_destroy => true
 
-    validates :name, :category, :description, :reciepe, presence: true
+    validates :name, :category, :price, :description, :reciepe, presence: true
 
 end

@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_10_29_171123) do
     t.integer "kitchen_id", null: false
     t.string "name", null: false
     t.string "category", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
     t.text "description", null: false
     t.text "reciepe"
     t.datetime "created_at", precision: 6, null: false

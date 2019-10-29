@@ -1,3 +1,6 @@
+##API
+
+
 #add kitchen 
 - kitchen name
 - title
@@ -17,3 +20,11 @@
 	slide image
 - ingredients  -> optional
 - reciepe -> optional 
+
+
+
+#Order
+- create order
+- approve order
+- 
+
