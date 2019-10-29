@@ -6,7 +6,7 @@ class Api::V1::KitchenController < ApplicationController
 
         kitchen.user = @current_user
         if kitchen.save
-            json_response({:kitchen=>kitchen.as_json(:include=>[:tags])}, 200)
+            json_response({:kitchen=>kitchen.as_json(:include=>:tags)}, 200)
         else
             json_response(kitchen.errors.full_messages, 401)
         end
@@ -14,8 +14,7 @@ class Api::V1::KitchenController < ApplicationController
 
     def index
         user = @current_user
-        kitchens = Kitchen.includes(:user)
-        json_response({:kitchens=> kitchens}, 200)
+        json_response({user: user.as_json(include: {kitchens: {include: [:tags]}})}, 200)
     end
 
 
