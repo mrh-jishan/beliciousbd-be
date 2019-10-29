@@ -1,6 +1,6 @@
 class Api::V1::FoodController < ApplicationController
     before_action :authorize_request
-    before_action :set_kitchen, only: [:create]
+    before_action :set_kitchen, only: [:create, :index]
 
     def create
         food = Food.new(food_param)
@@ -14,12 +14,11 @@ class Api::V1::FoodController < ApplicationController
     end
 
 
-    # # todo --- fix n+1 issue
-    # def index
-    #     user = @current_user
-    #     json_response({user: user.as_json(except: [:password_digest, :confirm_token],
-    #         :include => {:kitchens => {:include => :tags}})}, 200)
-    # end
+    # todo --- fix n+1 issue
+    def index
+        kitchen = @kitchen
+        json_response({kitchen: kitchen.as_json(:include => {:foods => {:include => :ingredients}})}, 200)
+    end
 
 
     protected
