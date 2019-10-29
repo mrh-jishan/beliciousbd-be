@@ -3,9 +3,10 @@ class Api::V1::KitchenController < ApplicationController
     
     def create
         kitchen = Kitchen.new(kitchen_param)
+
         kitchen.user = @current_user
         if kitchen.save
-            json_response({:kitchen=>kitchen}, 200)
+            json_response({:kitchen=>kitchen.as_json(:include=>[:tags])}, 200)
         else
             json_response(kitchen.errors.full_messages, 401)
         end
@@ -21,6 +22,6 @@ class Api::V1::KitchenController < ApplicationController
     protected
     
     def kitchen_param
-        params.required(:kitchen).permit(:name, :title, :description)
+        params.required(:kitchen).permit(:name, :title, :description, tags_attributes: [ :name ])
     end
 end
