@@ -12,11 +12,13 @@ class Api::V1::KitchenController < ApplicationController
         end
     end
 
+
+    # todo --- fix n+1 issue
     def index
         user = @current_user
-        json_response({user: user.as_json(include: {kitchens: {include: [:tags]}})}, 200)
+        json_response({user: user.as_json(except: [:password_digest, :confirm_token],
+            :include => {:kitchens => {:include => :tags}})}, 200)
     end
-
 
     protected
     

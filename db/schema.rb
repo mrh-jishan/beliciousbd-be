@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_150422) do
+ActiveRecord::Schema.define(version: 2019_10_29_171123) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 2019_10_28_150422) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", unique: true
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.integer "kitchen_id", null: false
+    t.string "name", null: false
+    t.string "category", null: false
+    t.text "description", null: false
+    t.text "reciepe"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kitchen_id"], name: "index_foods_on_kitchen_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_ingredients_on_food_id"
   end
 
   create_table "kitchens", force: :cascade do |t|
@@ -57,6 +76,8 @@ ActiveRecord::Schema.define(version: 2019_10_28_150422) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "foods", "kitchens"
+  add_foreign_key "ingredients", "foods"
   add_foreign_key "kitchens", "users"
   add_foreign_key "tags", "kitchens"
 end

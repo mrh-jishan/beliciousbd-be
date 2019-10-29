@@ -5,9 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-linux]
 
-* System dependencies
+* System dependencies 
 
 * Configuration
 
@@ -21,4 +21,3 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
