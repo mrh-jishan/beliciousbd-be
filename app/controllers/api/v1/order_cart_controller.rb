@@ -17,7 +17,7 @@ class Api::V1::OrderCartController < ApplicationController
     # todo --- fix n+1 issue
     def index
         user = @current_user
-        order_carts = user.customer_order_carts.as_json(
+        order_carts = user.customer_order_carts.where(:processed=>false).as_json(
             :include=>{
                 :customer=>{:except=>[:password_digest, :confirm_token]},
                 :chef=>{:except=>[:password_digest, :confirm_token]},
