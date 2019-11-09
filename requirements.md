@@ -1,17 +1,21 @@
-##API
+#API
 
 
-#add kitchen 
+##add kitchen 
 - kitchen name
 - title
 - description 
 - tags 
-    name
+	- name
 - image 
-	profile image 
-	cover image
+	- profile image 
+	- cover image
 
-#Food
+- address
+	- GPS cordinates or full address, 
+	- initially address 
+
+##Food
 - food name
 - description 
 - category
@@ -21,10 +25,21 @@
 - ingredients  -> optional
 - reciepe -> optional 
 
-
-
-#Order
-- create order
+##Order
+- add to bag
+- create order 
 - approve order
-- 
+	- pay now
+- delier order
+- received order
+- feedback and rating 
+	- item ordered
+	- comment 
+	- price
+	- place 
+	- time took 
+
+##Find Kitchen
+- search kitchen 
+
 
