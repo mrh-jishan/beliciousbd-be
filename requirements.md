@@ -34,12 +34,17 @@
 - reciepe -> optional 
 
 
+##add to cart
+- add product to cart 
 
 ##Order
-- add to bag
 - create order 
-- approve order
 	- pay now
+	- address 
+		- cordinates or the postal code, house address
+- approve order
+- cancel order
+	- offline 
 - delier order
 - received order
 - feedback and rating 

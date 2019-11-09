@@ -4,7 +4,7 @@ class Api::V1::OrderCartController < ApplicationController
     def create
         food = Food.find(order_cart_param[:food_id])
         user = @current_user
-        order_cart = OrderCart.new(:food=> food, :customer=>user, :chef=> food.kitchen.user)
+        order_cart = OrderCart.new(:food=> food, :customer=>user, :chef=> food.kitchen.user, :processed=>false)
 
         if order_cart.save 
             json_response({:order_cart=> order_cart}, 200)
