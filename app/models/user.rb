@@ -1,6 +1,11 @@
 class User < ApplicationRecord
   has_one :address
   has_many :kitchens
+
+  # order_cart
+  has_many :customer_order_carts, class_name: "OrderCart", foreign_key: "customer_id"
+  has_many :chef_order_carts, class_name: "OrderCart", foreign_key: "chef_id"
+
   has_secure_password
   # user role
   enum role: {:admin=>"admin", :customer=>"customer", :chef=>"chef"}

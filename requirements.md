@@ -1,6 +1,14 @@
 #API
 
 
+##User
+
+- register user
+	- email verifiation
+	- mobile verification
+- login user
+
+
 ##add kitchen 
 - kitchen name
 - title
@@ -24,6 +32,8 @@
 	slide image
 - ingredients  -> optional
 - reciepe -> optional 
+
+
 
 ##Order
 - add to bag

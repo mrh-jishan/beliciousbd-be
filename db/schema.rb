@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_171123) do
+ActiveRecord::Schema.define(version: 2019_11_09_134028) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2019_10_29_171123) do
     t.index ["user_id"], name: "index_kitchens_on_user_id"
   end
 
+  create_table "order_carts", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "chef_id", null: false
+    t.integer "food_id", null: false
+    t.boolean "processed", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chef_id"], name: "index_order_carts_on_chef_id"
+    t.index ["customer_id"], name: "index_order_carts_on_customer_id"
+    t.index ["food_id"], name: "index_order_carts_on_food_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.integer "kitchen_id", null: false
@@ -80,5 +92,6 @@ ActiveRecord::Schema.define(version: 2019_10_29_171123) do
   add_foreign_key "foods", "kitchens"
   add_foreign_key "ingredients", "foods"
   add_foreign_key "kitchens", "users"
+  add_foreign_key "order_carts", "foods"
   add_foreign_key "tags", "kitchens"
 end
