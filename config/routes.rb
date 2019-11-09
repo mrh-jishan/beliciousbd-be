@@ -7,10 +7,12 @@ Rails.application.routes.draw do
       resources :auth, only: [:create, :update]
       
       resources :kitchen, only: [:create, :index] do
-        resources :food, only: [:index, :new, :create]
+
+        # new, was removed, set if error found
+        resources :food, only: [:index, :create]
       end
 
-      resources :order_cart, only: [:index]
+      resources :order_cart, only: [:index, :create]
     end  
   end  
 end
