@@ -8,6 +8,9 @@ class Order < ApplicationRecord
 
 
     def update_cart_processed_status
-        
+        # self.order_foods.each |order_food| do
+        #     order_food.order_cart.processed = true
+        # end
+        self.order_foods.each { |order_food| order_food.order_cart.update_attributes({ processed: true }) }
     end
 end
