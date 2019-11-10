@@ -1,0 +1,7 @@
+$ORDER_STATUS = {
+    CREATED: 1,
+    APPROVED: 2,
+    CANCELED: 3,
+    DELIVERED: 4,
+    RECEIVED: 5
+}
