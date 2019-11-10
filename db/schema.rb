@@ -68,10 +68,12 @@ ActiveRecord::Schema.define(version: 2019_11_09_162413) do
   create_table "order_foods", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "food_id", null: false
+    t.integer "order_cart_id", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_order_foods_on_food_id"
+    t.index ["order_cart_id"], name: "index_order_foods_on_order_cart_id"
     t.index ["order_id"], name: "index_order_foods_on_order_id"
   end
 
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_162413) do
   add_foreign_key "kitchens", "users"
   add_foreign_key "order_carts", "foods"
   add_foreign_key "order_foods", "foods"
+  add_foreign_key "order_foods", "order_carts"
   add_foreign_key "order_foods", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "tags", "kitchens"
