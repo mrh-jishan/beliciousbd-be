@@ -15,11 +15,16 @@ class Api::V1::OrderController < ApplicationController
         user = @current_user
         order_carts = user.customer_order_carts.where(:processed=>false)
         food_total_price = order_carts.joins(:food).sum(:price)
-        order = Order.new(:user=> user, :status=> 'created', :total_price=> food_total_price, :order_mode=>'Take-Away', :order_foods_attributes => order_carts.map{|cart| {food: cart.food, price: cart.food.price, order_cart: cart}})
+        order = Order.new(:user=> user, :status=> 'created', :total_price=> food_total_price, :order_mode=> order_param[:order_mode], :order_foods_attributes => order_carts.map{|cart| {food: cart.food, price: cart.food.price, order_cart: cart}})
         if order.save
             json_response({order: order}, 200)
         else
             json_response(order.errors.full_messages, 401)
         end
+    end
+
+
+    def order_param
+        params.required(:order).permit(:order_mode)
     end
 end
