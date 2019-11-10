@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root :to => 'application#index'
+  
   namespace :api, constraints: { format: 'json' } do  
     namespace :v1 do  
       
@@ -7,12 +8,11 @@ Rails.application.routes.draw do
       resources :auth, only: [:create, :update]
       
       resources :kitchen, only: [:create, :index] do
-
-        # new, was removed, set if error found
-        resources :food, only: [:index, :create]
+        resources :food, only: [:index, :create] # new, was removed, set if error found
       end
 
       resources :order_cart, only: [:index, :create]
+      resources :order, only: [:index, :create]
     end  
   end  
 end
