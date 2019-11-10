@@ -7,14 +7,8 @@ class Api::V1::OrderController < ApplicationController
 
     def index
         user = @current_user
-        order = user.orders
-        # order_carts = user.customer_order_carts.where(:processed=>false).as_json(
-        #     :include=>{
-        #         :customer=>{:except=>[:password_digest, :confirm_token]},
-        #         :chef=>{:except=>[:password_digest, :confirm_token]},
-        #         :food=>{:food=>:food}
-        #         })
-        json_response({order_cart: order}, 200)
+        orders = user.orders.as_json(:include=>:order_foods)
+        json_response({orders: orders}, 200)
     end
 
     def create
