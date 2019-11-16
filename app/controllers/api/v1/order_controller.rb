@@ -1,10 +1,6 @@
 class Api::V1::OrderController < ApplicationController
     before_action :authorize_request
    
-    #<Order id: nil, user_id: nil, status: "created", total_price: nil, order_mode: nil, created_at: nil, updated_at: nil> 
-    #<OrderFood id: nil, order_id: nil, food_id: nil, price: nil, created_at: nil, updated_at: nil>
-
-
     def index
         user = @current_user
         orders = user.orders.as_json(:include=>:order_foods)
@@ -23,6 +19,21 @@ class Api::V1::OrderController < ApplicationController
         end
     end
 
+    def update
+        user = @current_user
+        order = user.orders.find(params[:id])
+        if order
+            puts "-------------#{order_status_param[:status]}"
+            order.update_order_status(order_status_param[:status])
+            json_response(order, 200)
+        else
+          json_response({}, 401, "Sorry!!! invalid code")
+        end
+    end
+
+    def order_status_param
+        params.required(:order).permit(:status)
+    end
 
     def order_param
         params.required(:order).permit(:order_mode)

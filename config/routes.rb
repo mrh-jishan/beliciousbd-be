@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       end
 
       resources :order_cart, only: [:index, :create]
-      resources :order, only: [:index, :create]
+      resources :order, only: [:index, :create, :update]
     end  
   end  
 end
