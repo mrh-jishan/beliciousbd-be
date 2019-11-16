@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_162413) do
+ActiveRecord::Schema.define(version: 2019_11_16_172022) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 2019_11_09_162413) do
     t.index ["order_id"], name: "index_order_foods_on_order_id"
   end
 
+  create_table "order_ratings", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id", null: false
+    t.integer "rating", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_ratings_on_order_id"
+    t.index ["user_id", "order_id"], name: "index_order_ratings_on_user_id_and_order_id", unique: true
+    t.index ["user_id"], name: "index_order_ratings_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "status", default: 1, null: false
@@ -118,6 +130,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_162413) do
   add_foreign_key "order_foods", "foods"
   add_foreign_key "order_foods", "order_carts"
   add_foreign_key "order_foods", "orders"
+  add_foreign_key "order_ratings", "orders"
+  add_foreign_key "order_ratings", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "tags", "kitchens"
 end

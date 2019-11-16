@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :chef_order_carts, class_name: "OrderCart", foreign_key: "chef_id"
 
   has_many :orders
+  has_many :order_ratings
 
   has_secure_password
   # user role

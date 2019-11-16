@@ -23,7 +23,6 @@ class Api::V1::OrderController < ApplicationController
         user = @current_user
         order = user.orders.find(params[:id])
         if order
-            puts "-------------#{order_status_param[:status]}"
             order.update_order_status(order_status_param[:status])
             json_response(order, 200)
         else
