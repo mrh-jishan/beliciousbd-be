@@ -68,3 +68,6 @@ yarn-debug.log*
 
 # ignore .env
 .env
+
+# ignore .idea for ruby-mine
+.idea/*

@@ -60,9 +60,6 @@ GEM
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.3)
-    bullet (6.0.2)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     byebug (11.0.1)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
@@ -97,6 +94,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    pg (0.18.4)
     puma (3.12.1)
     rack (2.0.7)
     rack-cors (1.0.3)
@@ -149,7 +147,6 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uniform_notifier (1.13.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -161,11 +158,11 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
-  bullet
   byebug
   dotenv-rails
   jwt
   listen (>= 3.0.5, < 3.2)
+  pg (~> 0.18.4)
   puma (~> 3.11)
   rack-cors
   rails (~> 6.0.0)
