@@ -71,3 +71,5 @@ yarn-debug.log*
 
 # ignore .idea for ruby-mine
 .idea/*
+
+/config/master.key
