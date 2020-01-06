@@ -7,7 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:4200, beliciousbd.com'
+    origins ENV['CORS_ORIGINS'].split(',').map { |origin| origin.strip }
+    #origins 'localhost:4200, beliciousbd.com'
     resource '*',
              headers: :any,
              methods: [:get, :post, :put, :patch, :delete, :options, :head]

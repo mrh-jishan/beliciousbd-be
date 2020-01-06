@@ -17,7 +17,7 @@ Rails.application.configure do
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -43,16 +43,15 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Mail delivery
-  config.action_mailer.default_url_options = { :host => ENV["SES_HOST"] }
-
+  config.action_mailer.default_url_options = {:host => ENV["SES_HOST"]}
 
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.us-east-1.amazonaws.com",
-    :port => 587,
-    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
-    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
-    :authentication => :login,
-    :enable_starttls_auto => true
+      :address => ENV["SES_ADDRESS"],
+      :port => 587,
+      :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
+      :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
+      :authentication => :login,
+      :enable_starttls_auto => true
   }
 
   # Raises error for missing translations.
