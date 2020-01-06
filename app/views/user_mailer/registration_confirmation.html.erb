@@ -2,12 +2,12 @@ Hi <%= @user.first_name %>,
 <br>
 Thanks for registering! To confirm your registration click the URL below.
 <br>
-<%=link_to "Click Here",  "#{ENV['REGISTRATION_CONFIRMATION_LINK']}#{@user.confirm_token}"%>
+<%= link_to "Click Here", "#{ENV['REGISTRATION_CONFIRMATION_LINK']}#{@user.confirm_token}" %>
 <br>
 Or copy the below link to your browser
 <br>
-<%="#{ENV['REGISTRATION_CONFIRMATION_LINK']}#{@user.confirm_token}"%>
+<%= "#{ENV['REGISTRATION_CONFIRMATION_LINK']}#{@user.confirm_token}" %>
 <br>
 Thanks you
 <br>
-Md Robiul Hassan
+beliciousbd.com
