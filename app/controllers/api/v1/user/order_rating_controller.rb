@@ -1,4 +1,4 @@
-class Api::V1::OrderRatingController < ApplicationController
+class Api::V1::User::OrderRatingController < ApplicationController
   before_action :authorize_request
 
   def create

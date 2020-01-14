@@ -3,7 +3,7 @@ class Api::V1::OrderCartController < ApplicationController
 
     def create
         food = Food.find(order_cart_param[:food_id])
-        user = @current_user
+        user = User.find(@current_user_id)
         order_cart = OrderCart.new(:food=> food, :customer=>user, :chef=> food.kitchen.user, :processed=>false)
 
         if order_cart.save 
@@ -16,7 +16,7 @@ class Api::V1::OrderCartController < ApplicationController
 
     # todo --- fix n+1 issue
     def index
-        user = @current_user
+        user = User.find(@current_user_id)
         order_carts = user.customer_order_carts.where(:processed=>false).as_json(
             :include=>{
                 :customer=>{:except=>[:password_digest, :confirm_token]},
