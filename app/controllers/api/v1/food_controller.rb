@@ -14,7 +14,7 @@ class Api::V1::FoodController < ApplicationController
   end
 
   def index
-    foods = Food.where(kitchen_id: kitchen_id).joins(:kitchen).includes([:ingredients, :kitchen])
+    foods = Food.where(kitchen_id: kitchen_id).joins(:kitchen, :ingredients).includes([:ingredients, :kitchen])
     json_response({foods: foods.as_json(:include => [:ingredients, :kitchen])})
   end
 
