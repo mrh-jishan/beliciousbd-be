@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_11_16_172022) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.text "address", null: false
     t.string "city", limit: 64, null: false
     t.string "state", limit: 64, null: false
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   end
 
   create_table "foods", force: :cascade do |t|
-    t.integer "kitchen_id", null: false
+    t.bigint "kitchen_id", null: false
     t.string "name", null: false
     t.string "category", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
@@ -37,14 +40,14 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "food_id", null: false
+    t.bigint "food_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_ingredients_on_food_id"
   end
 
   create_table "kitchens", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "title", null: false
     t.text "description", null: false
@@ -54,9 +57,9 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   end
 
   create_table "order_carts", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "chef_id", null: false
-    t.integer "food_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "chef_id", null: false
+    t.bigint "food_id", null: false
     t.boolean "processed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,9 +69,9 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   end
 
   create_table "order_foods", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "food_id", null: false
-    t.integer "order_cart_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "food_id", null: false
+    t.bigint "order_cart_id", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   end
 
   create_table "order_ratings", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
     t.integer "rating", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -90,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "status", default: 1, null: false
     t.decimal "total_price", precision: 10, scale: 2, null: false
     t.string "order_mode", null: false
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "kitchen_id", null: false
+    t.bigint "kitchen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["kitchen_id"], name: "index_tags_on_kitchen_id"
