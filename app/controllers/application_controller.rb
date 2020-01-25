@@ -19,4 +19,9 @@ class ApplicationController < ActionController::API
       json_response({}, 401, e.message)
     end
   end
+
+
+  def index
+    render :json => {status: :ok}
+  end
 end

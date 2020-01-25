@@ -6,7 +6,7 @@ class Api::V1::UserController < ApplicationController
     if user.save
       json_response({:user => user.as_json(except: [:password_digest, :confirm_token])}, 200)
     else
-      json_response(user.errors.full_messages, 401)
+      json_response(user.errors.full_messages, 401, user.errors.full_messages.first)
     end
   end
 
