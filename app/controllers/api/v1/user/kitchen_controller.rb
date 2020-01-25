@@ -2,25 +2,18 @@ class Api::V1::User::KitchenController < ApplicationController
   before_action :authorize_request
 
   def create
-    kitchen = Kitchen.new(kitchen_param)
-
-    kitchen.user = User.find(@current_user_id)
+    user = User.find(@current_user_id)
+    kitchen = user.kitchens.new(kitchen_param)
     if kitchen.save
-      json_response({:kitchen => kitchen.as_json(:include => :tags)}, 200)
+      json_response({:kitchen => kitchen.as_json(:include => [:tags])}, 200)
     else
-      json_response(kitchen.errors.full_messages, 401)
+      json_response(kitchen.errors.full_messages, 401, kitchen.errors.full_messages.first)
     end
   end
 
-
-  # todo --- fix n+1 issue
   def index
-    #user = @current_user
-    #json_response({user: user.as_json(except: [:password_digest, :confirm_token],
-    #                                  :include => {:kitchens => {:include => :tags}})}, 200)
-
-    kitchens = Kitchen.where(:users => [User.find(@current_user_id)]).includes(:tags).as_json(:include => [:tags])
-    json_response({kitchens: kitchens}, 200)
+    kitchens = Kitchen.joins([:tags, :user]).where(:user_id => @current_user_id).includes([:tags, :user])
+    json_response({kitchens: kitchens.as_json(:include => [:tags, :user => {:except => [:password_digest, :confirm_token]}])}, 200)
   end
 
   protected

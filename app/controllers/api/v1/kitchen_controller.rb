@@ -12,8 +12,8 @@ class Api::V1::KitchenController < ApplicationController
   end
 
   def index
-    kitchens = Kitchen.joins([:tags, :user, :foods]).includes([:tags, :user, :foods])
-    json_response({kitchens: kitchens.as_json(:include => [:tags, :foods, :user => {:except => [:password_digest, :confirm_token]}])}, 200)
+    kitchens = Kitchen.joins([:tags, :user]).includes([:tags, :user])
+    json_response({kitchens: kitchens.as_json(:include => [:tags, :user => {:except => [:password_digest, :confirm_token]}])}, 200)
   end
 
   protected

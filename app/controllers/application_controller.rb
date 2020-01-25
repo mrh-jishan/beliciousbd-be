@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
         #rescue ActiveRecord::RecordNotFound => e
         #  json_response({}, 401, e.message)
     rescue JWT::DecodeError => e
-      json_response({}, 401, e.message)
+      json_response({message: 'Token not valid.'}, 401, 'Sorry! Invalid token')
     end
   end
 
