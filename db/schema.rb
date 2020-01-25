@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_172022) do
+ActiveRecord::Schema.define(version: 2020_01_25_095309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_ingredients_on_food_id"
+  end
+
+  create_table "kitchen_addresses", force: :cascade do |t|
+    t.bigint "kitchen_id", null: false
+    t.text "address", null: false
+    t.string "city", limit: 64, null: false
+    t.string "state", limit: 64, null: false
+    t.string "zip_code", limit: 10, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kitchen_id"], name: "index_kitchen_addresses_on_kitchen_id", unique: true
   end
 
   create_table "kitchens", force: :cascade do |t|
@@ -128,6 +139,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_172022) do
   add_foreign_key "addresses", "users"
   add_foreign_key "foods", "kitchens"
   add_foreign_key "ingredients", "foods"
+  add_foreign_key "kitchen_addresses", "kitchens"
   add_foreign_key "kitchens", "users"
   add_foreign_key "order_carts", "foods"
   add_foreign_key "order_foods", "foods"
